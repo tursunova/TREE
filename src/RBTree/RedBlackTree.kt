@@ -14,7 +14,7 @@ open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeIn
         if (searchNode(key) != null) return
 
         if (root == null) {
-            root = Node(key=key, value=value, color = Color.black)
+            root = Node(key, value, Color.black)
             return
         }
         var currNode: Node<T,P>? = root
@@ -24,7 +24,7 @@ open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeIn
                     currNode = currNode.leftChild!!
                 }
                 else {
-                    val newNode: Node<T, P> = Node(key = key, value = value, color = Color.red)
+                    val newNode: Node<T, P> = Node(key, value, Color.red)
                     newNode.parent = currNode
                     currNode.leftChild = newNode
                     fixInsert(newNode)
@@ -35,7 +35,7 @@ open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeIn
                     currNode = currNode.rightChild!!
                 }
                 else {
-                    val newNode: Node<T, P> = Node(key = key, value = value, color = Color.red)
+                    val newNode: Node<T, P> = Node(key, value, Color.red)
                     newNode.parent = currNode
                     currNode.rightChild = newNode
                     fixInsert(newNode)
@@ -69,7 +69,7 @@ open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeIn
                 }
 
             } else {
-                currNode = newNode?.parent?.parent?.leftChild//null?
+                currNode = newNode?.parent?.parent?.leftChild
                 if (currNode != null && currNode.color == Color.red) {
                     newNode.parent?.color = Color.black
                     currNode.color = Color.black
