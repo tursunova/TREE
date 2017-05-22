@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.*
 import RBTree.RedBlackTree
 import RBTree.Color
 import Node
+import org.junit.jupiter.api.Test
 
 internal class RBTreeTest{
 
@@ -52,70 +53,94 @@ internal class RBTreeTest{
         else
             return null
     }
-
+    @Test
     fun searchInEmptyTree(){
         val tree = RedBlackTree<Int,Int>()
         assertEquals(null,tree.search(3))
 
     }
+    @Test
     fun deleteInEmptyTree() {
         val tree = RedBlackTree<Int, Int>()
+        val emptyTree = RedBlackTree<Int, Int>()
         tree.erase(3)
-
+        tree.equals(emptyTree)
     }
+
+    @Test
     fun searchNotExistKey(){
         val tree = createTree()
         assertEquals(null,tree?.search(27))
     }
+
+    @Test
     fun deleteNotExistKey(){
         val tree = createTree()
         val newTree = createTree()
-        tree?.erase(27)
-        assertEquals(tree,newTree)
+        tree?.erase(277)
+        tree?.equals(newTree)
     }
+    @Test
     fun searchExistKey(){
         val tree = createTree()
         assertEquals(3,tree?.search(3))
     }
+
+    @Test
     fun deleteRoot(){
         val tree = createTree()
         tree?.erase(10)
         assertEquals(true,tree?.check())
     }
+
+    @Test
     fun insertExistKey(){
         val tree = createTree()
         val newTree = createTree()
         tree?.insert(3,3)
-        assertEquals(tree,newTree)
+        tree?.equals(newTree)
     }
+
+    @Test
     fun insertInEmptyTree(){
         val tree = RedBlackTree<Int,Int> ()
         tree.insert(3,3)
         assertEquals(true,tree.check())
     }
+
+    @Test
     fun insertRedNode(){
         val tree = createTree()
         tree?.insert(27,27)
         assertEquals(true,tree?.check())
     }
+
+    @Test
     fun insertNode(){
         val tree = createTree()
         tree?.insert(19,19)
         assertEquals(true,tree?.check())
     }
+
+    @Test
     fun deleteNodewithBlackBrother(){
         val tree = createTree()
         tree?.erase(21)
         assertEquals(true,tree?.check())
     }
+
+    @Test
     fun deleteNodeWithoutChildren(){
         val tree = createTree()
         tree?.erase(36)
     }
+
+    @Test
     fun deleteNodeWithOneChild(){
         val tree = createTree()
         tree?.erase(33)
     }
+    @Test
     fun stressTest() {
         val tree = RedBlackTree<Int, Int>()
         for (i in 1..10000000)
