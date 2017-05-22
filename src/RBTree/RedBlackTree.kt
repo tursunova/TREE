@@ -4,10 +4,9 @@ import Node
 import Queue
 import treeInterface
 
-open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeInterface<T,P>  {
+open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeInterface<T,P>, Iterable<Node<T,P>>  {
 
-    fun iterator(): Iterator<Node<T, P>> = RedBlackTreeIterator(root)
-
+    override fun iterator(): Iterator<Node<T, P>> = RedBlackTreeIterator(root)
 
     override fun insert(key: T, value: P) {
 
@@ -124,8 +123,12 @@ open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeIn
         var currNode: Node<T,P>? = root
         while (currNode!=null) {
             if (key < currNode.key) {
+                if (currNode.leftChild == null)
+                    return null
                 currNode = currNode.leftChild!!
             } else if (key > currNode.key) {
+                if (currNode.rightChild == null)
+                    return null
                 currNode = currNode.rightChild!!
             } else {
                 return currNode.value
@@ -138,8 +141,10 @@ open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeIn
         var currNode: Node<T,P>? = root
         while (currNode!=null) {
             if (key < currNode.key) {
+                if (currNode.leftChild == null) return null
                 currNode = currNode.leftChild!!
             } else if (key > currNode.key) {
+                if (currNode.rightChild == null) return null
                 currNode = currNode.rightChild!!
             } else {
                 return currNode
@@ -283,5 +288,15 @@ open class RedBlackTree <T:Comparable<T>,P>(var root: Node<T,P>? = null) :treeIn
         if (node.rightChild != null) right = numberOfBlackNodes(node.rightChild!!)
         if (left != right || left == -1 || right == -1) return -1
         return left
+    }
+    @Override
+    fun equals(Tree:RedBlackTree<T,P>):Boolean{
+        val currTree = this.toMutableList()
+        val newTree = Tree.toMutableList()
+        if (currTree.size != newTree.size) return false
+        for (i in 0..currTree.size - 1){
+            if (!(currTree[i].equals(newTree[i]))) return false
+        }
+        return true
     }
 }
