@@ -11,40 +11,40 @@ internal class RBTreeTest{
 
         val tree = RedBlackTree<Int,Int>()
 
-        tree.root = Node(10, 10, color = Color.black)
-        tree.root!!.leftChild = Node(6, 6, color = Color.black)
+        tree.root = Node(10, 10, Color.black)
+        tree.root!!.leftChild = Node(6, 6, Color.black)
         tree.root!!.leftChild!!.parent = tree.root
-        tree.root!!.rightChild = Node(28, 28, color = Color.black)
+        tree.root!!.rightChild = Node(28, 28, Color.black)
         tree.root!!.rightChild!!.parent = tree.root
 
-        tree.root!!.leftChild!!.leftChild = Node(1, 1, color = Color.black)
+        tree.root!!.leftChild!!.leftChild = Node(1, 1, Color.black)
         tree.root!!.leftChild!!.leftChild!!.parent = tree.root!!.leftChild
-        tree.root!!.leftChild!!.rightChild = Node(9, 9, color = Color.black)
+        tree.root!!.leftChild!!.rightChild = Node(9, 9, Color.black)
         tree.root!!.leftChild!!.rightChild!!.parent = tree.root!!.leftChild
 
-        tree.root!!.rightChild!!.leftChild = Node(21, 21, color = Color.red)
+        tree.root!!.rightChild!!.leftChild = Node(21, 21, Color.red)
         tree.root!!.rightChild!!.leftChild!!.parent = tree.root!!.rightChild
-        tree.root!!.rightChild!!.rightChild = Node(33, 33, color = Color.black)
+        tree.root!!.rightChild!!.rightChild = Node(33, 33, Color.black)
         tree.root!!.rightChild!!.rightChild!!.parent = tree.root!!.rightChild
 
-        tree.root!!.leftChild!!.leftChild!!.leftChild = Node(0, 0, color = Color.red)
+        tree.root!!.leftChild!!.leftChild!!.leftChild = Node(0, 0, Color.red)
         tree.root!!.leftChild!!.leftChild!!.leftChild!!.parent = tree.root!!.leftChild!!.leftChild
-        tree.root!!.leftChild!!.leftChild!!.rightChild = Node(3, 3, color = Color.red)
+        tree.root!!.leftChild!!.leftChild!!.rightChild = Node(3, 3, Color.red)
         tree.root!!.leftChild!!.leftChild!!.rightChild!!.parent = tree.root!!.leftChild!!.leftChild
 
 
-        tree.root!!.leftChild!!.rightChild!!.leftChild = Node(8, 8, color = Color.red)
+        tree.root!!.leftChild!!.rightChild!!.leftChild = Node(8, 8, Color.red)
         tree.root!!.leftChild!!.rightChild!!.leftChild!!.parent = tree.root!!.leftChild!!.rightChild
 
-        tree.root!!.rightChild!!.leftChild!!.leftChild = Node(17, 17, color = Color.black)
+        tree.root!!.rightChild!!.leftChild!!.leftChild = Node(17, 17, Color.black)
         tree.root!!.rightChild!!.leftChild!!.leftChild!!.parent = tree.root!!.rightChild!!.leftChild
-        tree.root!!.rightChild!!.leftChild!!.rightChild = Node(25, 25, color = Color.black)
+        tree.root!!.rightChild!!.leftChild!!.rightChild = Node(25, 25, Color.black)
         tree.root!!.rightChild!!.leftChild!!.rightChild!!.parent = tree.root!!.rightChild!!.leftChild
 
-        tree.root!!.rightChild!!.rightChild!!.rightChild = Node(36, 36, color = Color.red)
+        tree.root!!.rightChild!!.rightChild!!.rightChild = Node(36, 36, Color.red)
         tree.root!!.rightChild!!.rightChild!!.rightChild!!.parent = tree.root!!.rightChild!!.rightChild
 
-        tree.root!!.rightChild!!.leftChild!!.leftChild!!.rightChild = Node(18, 18, color = Color.red)
+        tree.root!!.rightChild!!.leftChild!!.leftChild!!.rightChild = Node(18, 18, Color.red)
         tree.root!!.rightChild!!.leftChild!!.leftChild!!.rightChild!!.parent = tree.root!!.rightChild!!.leftChild!!.leftChild
 
         if (tree.check())
