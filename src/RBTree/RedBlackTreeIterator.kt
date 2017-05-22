@@ -1,11 +1,8 @@
-package RBTree
+package bTree
 
-import Node
-import Queue
+class BTreeIterator<T : Comparable<T>, P>(node: BNode<T, P>?) : Iterator<BNode<T, P>> {
 
-class RedBlackTreeIterator<T : Comparable<T>, P>(node: Node<T, P>?) : Iterator<Node<T, P>> {
-
-    var q = Queue<T,P>()
+    var q = BQueue<T,P>()
 
     init {
         q.push(node!!)
@@ -13,10 +10,15 @@ class RedBlackTreeIterator<T : Comparable<T>, P>(node: Node<T, P>?) : Iterator<N
 
     override fun hasNext(): Boolean = !q.empty()
 
-    override fun next(): Node<T, P> {
+    override fun next(): BNode<T, P> {
         val v = q.pop()
-        if (v.data.leftChild != null) q.push(v.data.leftChild!!)
-        if (v.data.rightChild != null) q.push(v.data.rightChild!!)
+        if (!v.data.isLeaf()){
+
+            for(child in v.data.children){
+                q.push(child)
+            }
+
+        }
         return v.data
     }
 
