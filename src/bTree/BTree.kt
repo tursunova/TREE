@@ -2,9 +2,9 @@ package bTree
 
 import treeInterface
 
-open class BTree<T : Comparable<T>, P>(private var root: BNode<T, P>? = null, val t: Int = 3) : treeInterface<T, P> {
+open class BTree<T : Comparable<T>, P>(private var root: BNode<T, P>? = null, val t: Int = 3) : treeInterface<T, P>, Iterable<BNode<T,P>> {
 
-    fun iterator(): Iterator<BNode<T, P>> = BTreeIterator(root)
+    override fun iterator(): Iterator<BNode<T, P>> = BTreeIterator(root)
 
     override fun search(key: T): P?{
         if (searchNode(key)==null) return null
@@ -182,9 +182,7 @@ open class BTree<T : Comparable<T>, P>(private var root: BNode<T, P>? = null, va
 
     private fun mergeNodes(left: BNode<T, P>, right: BNode<T, P>, parent: BNode<T, P>): BNode<T, P> {
         left.keys.add(element = parent.keys[parent.children.indexOf(right) - 1])
-      //  left.values.add(element = parent.values[parent.children.indexOf(right) - 1])
         parent.keys.removeAt(parent.children.indexOf(right) - 1)
-      //  parent.values.removeAt(parent.children.indexOf(right) - 1)
         left.keys.addAll(right.keys)
         left.values.addAll(right.values)
         left.children.addAll(right.children)
